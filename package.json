@@ -4,6 +4,7 @@
   "description": "A project demo for startup",
   "main": "index.js",
   "scripts": {
+    "clean": "node ./build/clean.js",
     "dev": "cross-env BUILD_ENV=dev webpack-dev-server --progress --config ./build/webpack.config.dev.js",
     "build:dev": "npm run clean && cross-env BUILD_ENV=dev webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
     "build:test": "npm run clean && cross-env BUILD_ENV=test webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",

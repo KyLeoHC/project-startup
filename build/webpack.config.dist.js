@@ -5,26 +5,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-const config = {};
-switch (process.env.BUILD_ENV) {
-    case 'dev':
-        config.publicPath = '/home/';
-        break;
-    case 'test':
-        config.publicPath = '/home/';
-        break;
-    case 'prev':
-        config.publicPath = '/home/';
-        break;
-    case 'production':
-        config.publicPath = '/home/';
-        break;
-}
+const config = require('./config');
 
 baseConfig.output = {
-    path: path.resolve(__dirname, '../home'),
-    publicPath: config.publicPath,
+    path: path.resolve(__dirname, '../' + config.outputDirectory),
+    publicPath: config.publicPathMap[process.env.BUILD_ENV],
     filename: '[name]/bundle.[chunkhash].js',
     chunkFilename: '[name]/chunk.[chunkhash].js'
 };

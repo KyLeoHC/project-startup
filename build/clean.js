@@ -3,6 +3,7 @@
  * by KyLeo 2017.09.13
  */
 const fs = require('fs');
+const config = require('./config');
 
 const deleteFolderRecursive = path => {
     let files = [];
@@ -43,6 +44,6 @@ const cleanFile = list => {
     console.log('[clean.js]: task complete.....');
 };
 
-cleanFile(['./operating.zip', './operating']);
+cleanFile(config.cleanFiles);
 
 module.exports = cleanFile;

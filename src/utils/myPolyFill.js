@@ -98,13 +98,15 @@ const finallyPolyFill = () => {
 const donePolyFill = () => {
     if (Promise && !Promise.prototype.done) {
         Promise.prototype.done = function (onFulfilled, onRejected) {
-            this.then(onFulfilled, onRejected)
-                .catch(function (reason) {
-                    // 抛出一个全局错误
-                    setTimeout(() => {
-                        throw reason;
-                    }, 0);
-                });
+            this.then(
+                onFulfilled,
+                onRejected
+            ).catch(function (reason) {
+                // 抛出一个全局错误
+                setTimeout(() => {
+                    throw reason;
+                }, 0);
+            });
         };
     }
 };
