@@ -1,6 +1,6 @@
 <template>
     <div class="home-container">
-        <div>
+        <div class="word">
             {{ word }}
         </div>
     </div>
@@ -22,7 +22,7 @@
             }).then(response => {
                 this.word = response.word;
             }).catch(response => {
-                this.word = '500 error';
+                this.word = 'Hello, this is project startup.';
             }).finally(() => {
                 this.isLoading = false;
             });
@@ -36,6 +36,15 @@
 </script>
 <style lang="stylus">
     .home-container {
-        font-size 28px
+        font-size 28px; /*px*/
+
+        .word {
+            display flex
+            align-items center
+            width 400px; /*rem*/
+            height 60px; /*rem*/
+            padding-left 20px
+            border-left 1px solid #e0e0e0; /*hair*/
+        }
     }
 </style>
