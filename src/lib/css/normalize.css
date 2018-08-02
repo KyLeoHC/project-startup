@@ -465,16 +465,6 @@ p {
     margin: 0;
 }
 
-html,
-body,
-input,
-textarea,
-select,
-button {
-    font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Roboto", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    background-color: #fff;
-}
-
 input,
 textarea,
 select,
@@ -484,23 +474,3 @@ textarea:focus,
 select:focus {
     outline: none;
 }
-
-a,
-a:link,
-a:hover,
-a:active,
-a:visited {
-    color: #2DAEDD;
-}
-
-/*禁止点击相关元素会出现阴影效果*/
-/*div,
-img,
-a, a:active,
-button, button:active,
-input, input:active,
-textarea, textarea:active,
-select, select:active{
-    outline: 0;
-    -webkit-tap-highlight-color: transparent;
-}*/

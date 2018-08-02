@@ -75,6 +75,10 @@ Object.keys(baseConfig.entry).forEach(name => {
         })
     );
 });
+baseConfig.plugins.push(new InlineSourceWebpackPlugin({
+    compress: true,
+    rootpath: './src'
+}));
 
 // baseConfig.devtool = 'source-map';
 baseConfig.mode = 'production';

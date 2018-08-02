@@ -1,6 +1,7 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
 
 baseConfig.output = {
@@ -19,8 +20,7 @@ baseConfig.devServer = {
     stats: {
         children: false
     },
-    proxy: {
-    }
+    proxy: {}
 };
 baseConfig.devtool = 'cheap-module-eval-source-map';
 
@@ -33,6 +33,10 @@ Object.keys(baseConfig.entry).forEach(name => {
         })
     );
 });
+baseConfig.plugins.push(new InlineSourceWebpackPlugin({
+    compress: false,
+    rootpath: './src'
+}));
 baseConfig.plugins.push(new webpack.NamedModulesPlugin());
 baseConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 baseConfig.plugins.push(new webpack.DefinePlugin({
