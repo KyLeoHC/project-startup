@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const swConfig = require('./webpack.config.sw');
 const config = require('./config');
 
 baseConfig.output = {
@@ -94,4 +95,4 @@ if (process.env.BUILD_ENV === 'production') {
     ]));
 }
 
-module.exports = baseConfig;
+module.exports = [baseConfig, swConfig];
