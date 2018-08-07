@@ -1,0 +1,19 @@
+base_width = 750px
+base_font_size = 75px
+
+html {
+    font-size ((base_font_size / base_width) * 100) vw
+
+    @media screen and (max-width: 320px) {
+        font-size 64px
+    }
+
+    @media screen and (min-width: 540px) {
+        font-size 108px
+    }
+}
+
+body {
+    max-width 540px
+    min-width 320px
+}
