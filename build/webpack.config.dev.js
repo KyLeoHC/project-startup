@@ -46,7 +46,7 @@ baseConfig.devServer = {
     hot: true,
     inline: true,
     // open: true,
-    contentBase: './dev',
+    contentBase: './',
     host: '0.0.0.0',
     port: '8087',
     stats: {

@@ -3,9 +3,16 @@
         <div class="word">
             {{ word }}
         </div>
+        <div class="link">
+            <a href="javascript:;"
+               @click="linkToIntroduction">
+                link to introduction
+            </a>
+        </div>
     </div>
 </template>
 <script>
+    import router from '@/common/router';
     import {fetchWelcomeWord} from '../../services/data';
 
     export default {
@@ -28,15 +35,20 @@
             });
         },
         methods: {
-            jump(name) {
-                this.$router.push({name});
+            linkToIntroduction() {
+                router.push({
+                    module: 'introduction',
+                    query: {
+                        word: this.word
+                    }
+                });
             }
         }
     };
 </script>
 <style lang="stylus">
     .home-container {
-        font-size 28px; /*px*/
+        font-size 30px; /*px*/
 
         .word {
             display flex

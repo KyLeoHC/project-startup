@@ -35,6 +35,11 @@ module.exports = {
         'vue/html-closing-bracket-spacing': ['error', {
             'selfClosingTag': 'never'
         }],
+        'vue/max-attributes-per-line': [4, {
+            'multiline': {
+                'allowFirstLine': true
+            }
+        }],
         // eslint(check for js) config
         'space-before-function-paren': ['error', {
             'anonymous': 'always',
