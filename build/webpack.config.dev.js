@@ -4,10 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
+const config = require('./config');
 
 baseConfig.output = {
     path: path.resolve(__dirname, './'),
-    publicPath: '/dev',
+    publicPath: config.publicPathMap[process.env.BUILD_ENV],
     filename: '[name].js'
 };
 

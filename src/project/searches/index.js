@@ -7,4 +7,8 @@ promise.polyfill();
 myPolyFill();
 
 /* eslint-disable */
-const app = new Vue(App).$mount('#app');
+// change 'new Vue(App).$mount('#app');'
+// To solve hot reload error 'TypeError: Cannot read property 'extend' of undefined'
+const app = new Vue({
+    render: h => h(App),
+}).$mount('#app');

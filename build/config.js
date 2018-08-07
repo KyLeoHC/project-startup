@@ -2,7 +2,7 @@ module.exports = {
     cleanFiles: ['./dist.zip', './dist'],
     outputDirectory: 'dist',
     publicPathMap: {
-        dev: '/dist/',
+        dev: '/dev',
         test: '/dist/',
         prev: '/dist/',
         production: '/dist/'
