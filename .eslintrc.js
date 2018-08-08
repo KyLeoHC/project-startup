@@ -40,6 +40,7 @@ module.exports = {
                 'allowFirstLine': true
             }
         }],
+        'vue/html-self-closing': 0,
         // eslint(check for js) config
         'space-before-function-paren': ['error', {
             'anonymous': 'always',

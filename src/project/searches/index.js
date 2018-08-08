@@ -2,9 +2,12 @@ import Vue from 'vue';
 import promise from 'es6-promise';
 import myPolyFill from '@/utils/myPolyFill';
 import App from './app.vue';
+// import initServiceWorker from '@/common/initServiceWorker';
 
 promise.polyfill();
 myPolyFill();
+
+// initServiceWorker();
 
 /* eslint-disable */
 // change 'new Vue(App).$mount('#app');'

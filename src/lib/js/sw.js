@@ -1,17 +1,13 @@
 /*
  service worker
  */
-const cacheName = 'static-cache-v4';
+const cacheName = 'static-cache-v1';
 const cacheWhitelist = [];
 const disableProxyList = [];
 const useCorsList = [
     /at\.alicdn\.com/
 ];
-const precacheList = [
-    'http://localhost:8087/dist/introduction/chunk.deac8f4f72a72e50c58d.js',
-    'http://localhost:8087/dist/introduction/chunk.deac8f4f72a72e50c58d.css',
-    '//at.alicdn.com/t/font_689991_54p7ylidqqk.css'
-];
+const precacheList = [];
 const cacheList = [];
 
 self.addEventListener('install', function (event) {
