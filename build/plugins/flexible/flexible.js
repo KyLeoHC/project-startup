@@ -31,10 +31,10 @@ class Flexible {
         for (let i = 0; i < rules.length; i++) {
             const rule = rules[i];
             if (rule.type === 'media') {
-                this._processRules(rule.rules); // recursive invocation while dealing with media queries
+                this._processRules(rule.rules);
                 continue;
             } else if (rule.type === 'keyframes') {
-                this._processRules(rule.keyframes, true); // recursive invocation while dealing with keyframes
+                this._processRules(rule.keyframes, true);
                 continue;
             } else if (rule.type !== 'rule' && rule.type !== 'keyframe') {
                 continue;
@@ -44,7 +44,6 @@ class Flexible {
             if (declarations.length) {
                 declarations.forEach((declaration, index) => {
                     const nextDeclaration = rule.declarations[index + 1];
-                    // need transform: declaration && has 'px'
                     if (declaration.type === 'declaration' &&
                         nextDeclaration &&
                         nextDeclaration.type === 'comment') {
