@@ -6,3 +6,5 @@
 6.docker container rm [containerID]
 7.docker container start [containerID]
 8.docker container stop [containerID]
+9.docker save -o test-docker project-startup:0.0.1
+10.docker load < [filename]
