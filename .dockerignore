@@ -1,6 +1,8 @@
 .idea
 node_modules
-node_modules1
 dist
 dist.zip
-dist1
+.git
+npm-debug.log
+src
+static
