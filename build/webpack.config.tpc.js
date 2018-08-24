@@ -17,20 +17,24 @@ baseConfig.output = {
     chunkFilename: '[name]/chunk.js'
 };
 
+baseConfig.optimization = {
+    // minimize: false,
+    minimizer: [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                output: {
+                    comments: false,
+                    beautify: false
+                }
+            }
+        })
+    ]
+};
+
 baseConfig.plugins = baseConfig.plugins.concat([
     new webpack.DefinePlugin({
         'build.env': {
             NODE_ENV: JSON.stringify(process.env.BUILD_ENV)
-        }
-    }),
-    new UglifyJsPlugin({
-        parallel: 4,
-        uglifyOptions: {
-            // compress: false,
-            output: {
-                comments: false,
-                beautify: false
-            }
         }
     }),
     new OptimizeCSSAssetsPlugin({}),

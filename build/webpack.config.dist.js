@@ -41,7 +41,17 @@ baseConfig.optimization = {
                 test: /[\\/]src[\\/]common[\\/]/
             }
         }
-    }
+    },
+    minimizer: [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                output: {
+                    comments: false,
+                    beautify: false
+                }
+            }
+        })
+    ]
 };
 
 baseConfig.plugins = baseConfig.plugins.concat([
@@ -51,16 +61,6 @@ baseConfig.plugins = baseConfig.plugins.concat([
         // },
         'build.env': {
             NODE_ENV: JSON.stringify(process.env.BUILD_ENV)
-        }
-    }),
-    new UglifyJsPlugin({
-        parallel: 4,
-        uglifyOptions: {
-            // compress: false,
-            output: {
-                comments: false,
-                beautify: false
-            }
         }
     }),
     new OptimizeCSSAssetsPlugin({}),
