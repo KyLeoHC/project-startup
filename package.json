@@ -9,7 +9,11 @@
     "build:dev": "npm run clean && cross-env BUILD_ENV=dev webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
     "build:test": "npm run clean && cross-env BUILD_ENV=test webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
     "build:prev": "npm run clean && cross-env BUILD_ENV=prev webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
-    "build:prod": "npm run clean && cross-env BUILD_ENV=production webpack --display-optimization-bailout --config ./build/webpack.config.dist.js"
+    "build:prod": "npm run clean && cross-env BUILD_ENV=production webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
+    "build-tpc:dev": "npm run clean && cross-env BUILD_ENV=dev webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js",
+    "build-tpc:test": "npm run clean && cross-env BUILD_ENV=test webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js",
+    "build-tpc:prev": "npm run clean && cross-env BUILD_ENV=prev webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js",
+    "build-tpc:prod": "npm run clean && cross-env BUILD_ENV=production webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js"
   },
   "repository": {
     "type": "git",

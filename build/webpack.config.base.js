@@ -1,6 +1,5 @@
 const path = require('path');
-const glob = require('glob');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const devMode = process.env.BUILD_ENV === 'dev';
 
@@ -51,7 +50,7 @@ const config = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+                        loader: devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader
                     },
                     {
                         loader: 'css-loader'
@@ -72,11 +71,7 @@ const config = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin(),
-        new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : '[name]/bundle.[chunkhash].css',
-            chunkFilename: devMode ? '[name].css' : '[name]/chunk.[chunkhash].css',
-        })
+        new VueLoaderPlugin()
     ],
     stats: {
         children: false,
@@ -85,10 +80,5 @@ const config = {
         modules: false
     }
 };
-
-glob.sync('./src/project/*').map(function (src) {
-    const name = path.basename(src);
-    config.entry[name] = `./src/project/${name}/index.js`;
-});
 
 module.exports = config;

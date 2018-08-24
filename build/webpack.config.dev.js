@@ -1,10 +1,16 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
 const config = require('./config');
+
+glob.sync('./src/project/*').map(function (src) {
+    const name = path.basename(src);
+    baseConfig.entry[name] = `./src/project/${name}/index.js`;
+});
 
 baseConfig.output = {
     path: path.resolve(__dirname, './'),

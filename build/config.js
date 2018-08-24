@@ -1,5 +1,5 @@
 module.exports = {
-    cleanFiles: ['./dist.zip', './dist'],
+    cleanFiles: ['./dist.zip', './dist', './dist-tpc', './dist-tpc.zip'],
     outputDirectory: 'dist',
     publicPathMap: {
         dev: '/dev',
