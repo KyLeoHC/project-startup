@@ -38,11 +38,11 @@
 关键说明:
 
 1. `@babel/preset-env`:
-- `modules`: 设置为false只是为了webpack，因为webpack自己会转换成自己的模块系统(非webpack配合使用可以利用babel来转换成其它模块格式)
+    - `modules`: 设置为false只是为了webpack，因为webpack自己会转换成自己的模块系统(非webpack配合使用可以利用babel来转换成其它模块格式)
 
 2. `@babel/plugin-transform-runtime`:
-- `corejs`: 如果设置成`2`的话，则需要安装`@babel/runtime-corejs2`依赖，并且类似`Promise`等的polyfill会改成局部引用(默认false的话，还是直接polyfill到全局属性上，比如挂载个Promise到window对象下)
-- `useESModules`: 也是为了webpack
+    - `corejs`: 如果设置成`2`的话，则需要安装`@babel/runtime-corejs2`依赖，并且类似`Promise`等的polyfill会改成局部引用(默认false的话，还是直接polyfill到全局属性上，比如挂载个Promise到window对象下)
+    - `useESModules`: 也是为了webpack
 
 有一点需要注意的，一般我们webpack的`babel-loader`都会配置成排除`node_modules`目录里的代码，如果`transform-runtime`的`corejs`配置成`2`，那这个
 时候就要意识到一点，比如Promise，你的项目源码引用的Promise对象和项目依赖的代码所引用的Promise对象就很有可能不是同一个了！
