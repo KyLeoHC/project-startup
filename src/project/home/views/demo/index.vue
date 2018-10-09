@@ -9,9 +9,14 @@
                 link to introduction
             </a>
         </div>
+        <component
+            :is="tpcName"
+            v-if="tpcName">
+        </component>
     </div>
 </template>
 <script>
+    import Vue from 'vue';
     import router from '@/common/router';
     import {fetchWelcomeWord} from '../../services/data';
 
@@ -19,6 +24,7 @@
         data() {
             return {
                 word: '',
+                tpcName: '',
                 isLoading: false
             };
         },
@@ -33,6 +39,11 @@
             }).finally(() => {
                 this.isLoading = false;
             });
+
+            window.tpcLoadCallBack = () => {
+                Vue.component('art', window.$tpc['art']);
+                this.tpcName = 'art';
+            };
         },
         methods: {
             linkToIntroduction() {

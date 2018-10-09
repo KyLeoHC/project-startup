@@ -1,13 +1,20 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
+const config = require('./config');
+const swConfig = require('./webpack.config.sw');
 const baseConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const swConfig = require('./webpack.config.sw');
-const config = require('./config');
+
+glob.sync('./src/project/*').map(function (src) {
+    const name = path.basename(src);
+    baseConfig.entry[name] = `./src/project/${name}/index.js`;
+});
 
 baseConfig.output = {
     path: path.resolve(__dirname, '../' + config.outputDirectory),
@@ -34,7 +41,17 @@ baseConfig.optimization = {
                 test: /[\\/]src[\\/]common[\\/]/
             }
         }
-    }
+    },
+    minimizer: [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                output: {
+                    comments: false,
+                    beautify: false
+                }
+            }
+        })
+    ]
 };
 
 baseConfig.plugins = baseConfig.plugins.concat([
@@ -46,17 +63,12 @@ baseConfig.plugins = baseConfig.plugins.concat([
             NODE_ENV: JSON.stringify(process.env.BUILD_ENV)
         }
     }),
-    new UglifyJsPlugin({
-        parallel: 4,
-        uglifyOptions: {
-            output: {
-                comments: false,
-                beautify: false
-            }
-        }
-    }),
     new OptimizeCSSAssetsPlugin({}),
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new MiniCssExtractPlugin({
+        filename: '[name]/bundle.[chunkhash].css',
+        chunkFilename: '[name]/chunk.[chunkhash].css'
+    })
 ]);
 
 Object.keys(baseConfig.entry).forEach(name => {
@@ -86,13 +98,11 @@ baseConfig.plugins.push(new InlineSourceWebpackPlugin({
 baseConfig.mode = 'production';
 
 if (process.env.BUILD_ENV === 'production') {
-    baseConfig.plugins.push(new CopyWebpackPlugin([
-        {
-            from: path.resolve(__dirname, '../static'),
-            to: 'static',
-            ignore: ['.*']
-        }
-    ]));
+    baseConfig.plugins.push(new CopyWebpackPlugin([{
+        from: path.resolve(__dirname, '../static'),
+        to: 'static',
+        ignore: ['.*']
+    }]));
 }
 
 module.exports = [baseConfig, swConfig];
