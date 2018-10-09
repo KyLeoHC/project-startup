@@ -34,7 +34,7 @@ const config = {
                 loader: 'eslint-loader',
                 enforce: 'pre',
                 include: [path.resolve(__dirname, '../src')],
-                exclude: ['node_modules'],
+                exclude: [/node_modules/],
                 options: {
                     formatter: require('eslint-friendly-formatter')
                 }

@@ -40,8 +40,14 @@ module.exports = {
                 'allowFirstLine': true
             }
         }],
+        'vue/html-closing-bracket-newline': ['error', {
+            'singleline': 'error',
+            'multiline': 'never'
+        }],
+        'vue/no-unused-components': 0,
         'vue/html-self-closing': 0,
         // eslint(check for js) config
+        'object-curly-spacing': ['error', 'never'],
         'space-before-function-paren': ['error', {
             'anonymous': 'always',
             'named': 'never',
