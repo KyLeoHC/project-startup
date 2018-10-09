@@ -8,7 +8,7 @@
 - `@babel/runtime-corejs2`: 和`@babel/runtime`有点像，只是区别在于可以用于非实例方法的polyfill，它可以用`core-js`里面的函数替换类似`Promise`或者`Symbol`的对象
 - `@babel/polyfill`: includes a custom regenerator runtime and core-js
 - `@babel/plugin-transform-runtime`: 把babel的公共helpers函数改成对`@babel/runtime`或者`@babel/runtime-corejs2`的引用以达到公用的目的，另外也可以为一些
-类似`Map`、`Promise`等的polyfill创建一个沙盒环境，其实就是不再改写全局属性上的原型对象，直接使用内部闭包引用对应模块，但这也就意味着比如`[]`等实例对象是不会有相关polyfill出来的方法
+类似`Map`、`Promise`等的polyfill创建一个沙盒环境，其实就是不再改写全局属性上的原型对象，直接局部引用对应模块，但这也就意味着比如`[]`等实例对象是不会有相关polyfill出来的方法
 
 ## 配置
 ```js
