@@ -90,7 +90,7 @@ Object.keys(baseConfig.entry).forEach(name => {
         })
     );
 });
-// baseConfig.plugins.push(new OmitCSSWebpackPlugin());
+baseConfig.plugins.push(new OmitCSSWebpackPlugin());
 baseConfig.plugins.push(new InlineSourceWebpackPlugin({
     compress: true,
     rootpath: './src'
