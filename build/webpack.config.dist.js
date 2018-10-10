@@ -10,6 +10,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// 由于最新版的webpack-cli自己也取值了命令行入参，所以我们的参数也会被webpack-cli拿去处理
+// 从而引起entry赋值异常的bug
+// const commandOptions = require('./getCommandOptions')();
 
 glob.sync('./src/project/*').map(function (src) {
     const name = path.basename(src);
@@ -56,11 +59,8 @@ baseConfig.optimization = {
 
 baseConfig.plugins = baseConfig.plugins.concat([
     new webpack.DefinePlugin({
-        // 'process.env': {
-        //     NODE_ENV: JSON.stringify('production')
-        // },
-        'build.env': {
-            NODE_ENV: JSON.stringify(process.env.BUILD_ENV)
+        'process.env': {
+            BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
         }
     }),
     new OptimizeCSSAssetsPlugin({}),
