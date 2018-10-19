@@ -64,7 +64,17 @@ baseConfig.devServer = {
     stats: {
         children: false
     },
-    proxy: {}
+    proxy: {},
+    historyApiFallback: {
+        rewrites: [
+            {
+                from: /^\/dev\/.*$/,
+                to(context) {
+                    return context.parsedUrl.pathname.replace(/^\/dev\/([a-zA-Z]+)\/.*$/, `/dev/$1/index.html`);
+                }
+            }
+        ]
+    }
 };
 
 baseConfig.mode = 'development';
