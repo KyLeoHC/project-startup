@@ -24,7 +24,29 @@ const parseNumber = (value = '') => {
     }
 };
 
+const _toString = Object.prototype.toString;
+
+/**
+ * 判断给定的值是不是对象，并且也不是html的元素对象或者节点对象
+ * @param value
+ * @returns {boolean}
+ */
+const isPlainObject = value => {
+    return _toString.call(value) === '[object Object]';
+};
+
+/**
+ * 判断给定的值是不是数组
+ * @param value
+ * @returns {boolean}
+ */
+const isArray = value => {
+    return _toString.call(value) === '[object Array]';
+};
+
 export {
     isNumber,
-    parseNumber
+    parseNumber,
+    isPlainObject,
+    isArray
 };
