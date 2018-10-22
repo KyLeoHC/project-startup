@@ -44,9 +44,20 @@ const isArray = value => {
     return _toString.call(value) === '[object Array]';
 };
 
+/**
+ * 检查给定对象上有没有指定的key
+ * @param obj
+ * @param key
+ * @returns {boolean}
+ */
+const hasOwn = (obj, key) => {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+};
+
 export {
-    isNumber,
     parseNumber,
+    hasOwn,
+    isNumber,
     isPlainObject,
     isArray
 };
