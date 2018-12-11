@@ -23,8 +23,8 @@ glob.sync('./src/project/*').map(function (src) {
 baseConfig.output = {
     path: path.resolve(__dirname, '../' + config.outputDirectory),
     publicPath: config.publicPathMap[process.env.BUILD_ENV],
-    filename: '[name]/bundle.[chunkhash].js',
-    chunkFilename: '[name]/chunk.[chunkhash].js'
+    filename: '[name]/bundle.[contenthash].js',
+    chunkFilename: '[name]/chunk.[contenthash].js'
 };
 
 baseConfig.optimization = {
@@ -69,8 +69,8 @@ baseConfig.plugins = baseConfig.plugins.concat([
     new OptimizeCSSAssetsPlugin({}),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-        filename: '[name]/bundle.[chunkhash].css',
-        chunkFilename: '[name]/chunk.[chunkhash].css'
+        filename: '[name]/bundle.[contenthash].css',
+        chunkFilename: '[name]/chunk.[contenthash].css'
     })
 ]);
 
