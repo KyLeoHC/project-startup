@@ -3,7 +3,7 @@
 module.exports = {
     plugins: [
         // to edit target browsers: use "browserlist" field in package.json
-        require('autoprefixer'),
-        require('./build/plugins/flexible')()
+        require('./build/plugins/flexible')(),
+        require('autoprefixer')
     ]
 };

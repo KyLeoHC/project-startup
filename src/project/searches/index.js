@@ -1,17 +1,22 @@
+/* eslint-disable */
 import Vue from 'vue';
-import promise from 'es6-promise';
-import myPolyFill from '@/utils/myPolyFill';
+import {
+    loadCSSByArray,
+    allPolyFill
+} from '@/utils';
 import App from './app.vue';
 // import initServiceWorker from '@/common/initServiceWorker';
 
-promise.polyfill();
-myPolyFill();
+allPolyFill();
 
 // initServiceWorker();
 
-/* eslint-disable */
 // change 'new Vue(App).$mount('#app');'
 // To solve hot reload error 'TypeError: Cannot read property 'extend' of undefined'
-const app = new Vue({
-    render: h => h(App),
-}).$mount('#app');
+loadCSSByArray([
+    ...(window.__cssList || []),
+]).finally(() => {
+    const app = new Vue({
+        render: h => h(App),
+    }).$mount('#app');
+});

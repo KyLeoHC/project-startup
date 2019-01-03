@@ -111,15 +111,17 @@ const donePolyFill = () => {
     }
 };
 
-export {
-    keysPolyFill,
-    assignPolyFill,
-    finallyPolyFill,
-    donePolyFill
-};
-export default () => {
+const allPolyFill = () => {
     keysPolyFill();
     assignPolyFill();
     finallyPolyFill();
     donePolyFill();
+};
+
+export {
+    keysPolyFill,
+    assignPolyFill,
+    finallyPolyFill,
+    donePolyFill,
+    allPolyFill
 };

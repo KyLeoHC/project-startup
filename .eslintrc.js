@@ -40,14 +40,22 @@ module.exports = {
                 'allowFirstLine': true
             }
         }],
+        'vue/html-closing-bracket-newline': ['error', {
+            'singleline': 'error',
+            'multiline': 'never'
+        }],
+        'vue/no-unused-components': 0,
         'vue/html-self-closing': 0,
         // eslint(check for js) config
+        'object-curly-spacing': ['error', 'never'],
         'space-before-function-paren': ['error', {
             'anonymous': 'always',
             'named': 'never',
             'asyncArrow': 'ignore'
         }],
-        'indent': 'off',
+        'indent': ['error', 4, {
+            'SwitchCase': 1
+        }],
         'eqeqeq': 'off',
         'semi': ['error', 'always'],
         // allow paren-less arrow functions
@@ -56,16 +64,13 @@ module.exports = {
         'generator-star-spacing': 0,
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
-        // 'overrides': [
-        //     {
-        //         'files': ['*.js'],
-        //         'rules': {
-        //             'indent': ['error', 4, {
-        //                 'SwitchCase': 1
-        //             }],
-        //             'vue/script-indent': 'off'
-        //         }
-        //     }
-        // ]
-    }
+    },
+    'overrides': [
+        {
+            'files': ['*.vue'],
+            'rules': {
+                'indent': 'off'
+            }
+        }
+    ]
 };

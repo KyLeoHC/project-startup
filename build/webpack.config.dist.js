@@ -10,6 +10,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OmitCSSWebpackPlugin = require('./plugins/omit-css-webpack-plugin');
+// 由于最新版的webpack-cli自己也取值了命令行入参，所以我们的参数也会被webpack-cli拿去处理
+// 从而引起entry赋值异常的bug
+// const commandOptions = require('./getCommandOptions')();
 
 glob.sync('./src/project/*').map(function (src) {
     const name = path.basename(src);
@@ -19,8 +23,8 @@ glob.sync('./src/project/*').map(function (src) {
 baseConfig.output = {
     path: path.resolve(__dirname, '../' + config.outputDirectory),
     publicPath: config.publicPathMap[process.env.BUILD_ENV],
-    filename: '[name]/bundle.[chunkhash].js',
-    chunkFilename: '[name]/chunk.[chunkhash].js'
+    filename: '[name]/bundle.[contenthash].js',
+    chunkFilename: '[name]/chunk.[contenthash].js'
 };
 
 baseConfig.optimization = {
@@ -33,11 +37,13 @@ baseConfig.optimization = {
             vendor: {
                 name: 'vendor',
                 chunks: 'all',
+                enforce: true,
                 test: /[\\/]node_modules[\\/]/
             },
             common: {
                 name: 'common',
                 chunks: 'all',
+                enforce: true, // 如果不设置这个enforce值，webpack内部会有个自动优化机制，模块数量达到一定数量时，当前配置会被webpack自动调整，生成的chunk会有所不一样
                 test: /[\\/]src[\\/]common[\\/]/
             }
         }
@@ -56,18 +62,15 @@ baseConfig.optimization = {
 
 baseConfig.plugins = baseConfig.plugins.concat([
     new webpack.DefinePlugin({
-        // 'process.env': {
-        //     NODE_ENV: JSON.stringify('production')
-        // },
-        'build.env': {
-            NODE_ENV: JSON.stringify(process.env.BUILD_ENV)
+        'process.env': {
+            BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
         }
     }),
     new OptimizeCSSAssetsPlugin({}),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-        filename: '[name]/bundle.[chunkhash].css',
-        chunkFilename: '[name]/chunk.[chunkhash].css'
+        filename: '[name]/bundle.[contenthash].css',
+        chunkFilename: '[name]/chunk.[contenthash].css'
     })
 ]);
 
@@ -89,6 +92,7 @@ Object.keys(baseConfig.entry).forEach(name => {
         })
     );
 });
+baseConfig.plugins.push(new OmitCSSWebpackPlugin());
 baseConfig.plugins.push(new InlineSourceWebpackPlugin({
     compress: true,
     rootpath: './src'
