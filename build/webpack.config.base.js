@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const devMode = process.env.BUILD_ENV === 'dev';
+const devMode = process.env.BUILD_ENV === 'development';
 
 const config = {
     entry: {},
