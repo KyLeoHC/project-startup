@@ -13,7 +13,10 @@
                                 'active': engine.id === selectEngine.id
                             }"
                             @click="onClickEngine(engine)">
-                            <span>{{ engine.name }}</span><span class="iconfont icon-check"></span>
+                            <span>
+                                {{ engine.name }}
+                            </span>
+                            <span class="iconfont icon-check"></span>
                         </li>
                     </ul>
                 </section>
@@ -23,7 +26,9 @@
                         <li>
                             <div class="left">
                                 <switch-btn v-model="enableSearchHistory"></switch-btn>
-                                <span @click="enableSearchHistory = !enableSearchHistory">搜索历史</span>
+                                <span @click="enableSearchHistory = !enableSearchHistory">
+                                    搜索历史
+                                </span>
                             </div>
                         </li>
                     </ul>

@@ -16,7 +16,7 @@ const defaultConfig = {
     pxComment: 'px',
     remComment: 'rem',
     hairComment: 'hair',
-    imgUrlComment: 'img url'
+    imgUrlComment: 'img flex'
 };
 
 class Flexible {

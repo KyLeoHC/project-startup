@@ -5,7 +5,7 @@ module.exports = {
     },
     parserOptions: {
         // vue-eslint-parser uses the parser which is set by parserOptions.parser to parse scripts
-        parser: 'babel-eslint',
+        // parser: 'babel-eslint',
         ecmaVersion: 2017,
         sourceType: 'module'
     },
@@ -16,7 +16,7 @@ module.exports = {
         'plugin:vue/strongly-recommended'
     ],
     globals: {
-        'build': true
+        // 'build': true
     },
     rules: {
         // override/add rules settings here, such as:

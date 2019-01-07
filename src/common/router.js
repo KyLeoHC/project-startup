@@ -8,7 +8,7 @@ const router = {
             queryList.push(`${key}=${encodeURIComponent(query[key])}`);
         }
         let prefix = '';
-        switch (build.env.NODE_ENV) {
+        switch (process.env.NODE_ENV) {
             case 'production':
                 prefix = '/dist';
                 break;

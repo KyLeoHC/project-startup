@@ -29,8 +29,12 @@
         </div>
         <div class="search-history">
             <header>
-                <div class="left">搜索历史</div>
-                <div class="right">清除</div>
+                <div class="left">
+                    搜索历史
+                </div>
+                <div class="right">
+                    清除
+                </div>
             </header>
             <ul>
                 <li>123</li>
@@ -42,7 +46,9 @@
                      @history="onHistoryStateChange">
         </search-menu>
         <footer>
-            <div>当前搜索引擎: {{ engine ? engine.name : '' }}</div>
+            <div>
+                当前搜索引擎: {{ engine ? engine.name : '' }}
+            </div>
         </footer>
     </div>
 </template>
@@ -156,6 +162,7 @@
                 }
             }
         }
+
         .search-history {
             display none
             width 90%
@@ -179,6 +186,7 @@
                 }
             }
         }
+
         footer {
             position absolute
             bottom 30px; /*rem*/

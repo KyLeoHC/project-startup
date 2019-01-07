@@ -1,6 +1,6 @@
-import initServiceWorker from './initServiceWorker';
+// import initServiceWorker from './initServiceWorker';
 
 export default router => {
-    initServiceWorker();
+    // initServiceWorker();
     return router;
 };

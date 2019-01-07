@@ -2,7 +2,7 @@ let baseUrl = '';
 let swPath = '';
 let staticPath = '';
 
-switch (build.env.NODE_ENV) {
+switch (process.env.NODE_ENV) {
     case 'dev':
         baseUrl = '//dev.host.com/proxy/';
         swPath = '/dev/';

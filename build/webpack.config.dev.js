@@ -6,16 +6,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
 const config = require('./config');
-const commandOptions = require('./getCommandOptions')();
+// const commandOptions = require('./getCommandOptions')();
 
-if (commandOptions.project) {
-    baseConfig.entry[name] = `./src/project/${commandOptions.project}/index.js`;
-} else {
-    glob.sync('./src/project/*').map(function (src) {
-        const name = path.basename(src);
-        baseConfig.entry[name] = `./src/project/${name}/index.js`;
-    });
-}
+// if (commandOptions.project) {
+//     baseConfig.entry[name] = `./src/project/${commandOptions.project}/index.js`;
+// } else {
+//     glob.sync('./src/project/*').map(function (src) {
+//         const name = path.basename(src);
+//         baseConfig.entry[name] = `./src/project/${name}/index.js`;
+//     });
+// }
+
+process.env.NODE_ENV = 'development';
+
+glob.sync('./src/project/*').map(function (src) {
+    const name = path.basename(src);
+    baseConfig.entry[name] = `./src/project/${name}/index.js`;
+});
 
 baseConfig.output = {
     path: path.resolve(__dirname, './'),
@@ -46,11 +53,9 @@ baseConfig.plugins.push(new InlineSourceWebpackPlugin({
 baseConfig.plugins.push(new webpack.NamedModulesPlugin());
 baseConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 baseConfig.plugins.push(new webpack.DefinePlugin({
-    // 'process.env': {
-    //     NODE_ENV: JSON.stringify('development'),
-    // },
-    'build.env': {
-        NODE_ENV: JSON.stringify(process.env.BUILD_ENV)
+    'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
     }
 }));
 

@@ -5,6 +5,6 @@ module.exports = {
         dev: '/dev',
         test: '/dist/',
         prev: '/dist/',
-        production: '/dist/'
+        production: '/project-startup/dist/'
     }
 };
