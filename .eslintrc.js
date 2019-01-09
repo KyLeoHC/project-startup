@@ -5,7 +5,7 @@ module.exports = {
     },
     parserOptions: {
         // vue-eslint-parser uses the parser which is set by parserOptions.parser to parse scripts
-        // parser: 'babel-eslint',
+        parser: 'babel-eslint', // 部分语法，比如babel的动态import需要这个parser
         ecmaVersion: 2017,
         sourceType: 'module'
     },

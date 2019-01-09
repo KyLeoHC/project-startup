@@ -27,7 +27,8 @@ glob.sync('./src/project/*').map(function (src) {
 baseConfig.output = {
     path: path.resolve(__dirname, './'),
     publicPath: config.publicPathMap[process.env.BUILD_ENV],
-    filename: '[name].js'
+    chunkFilename: '[name]/chunk.js',
+    filename: '[name]/bundle.js'
 };
 
 Object.keys(baseConfig.entry).forEach(name => {
@@ -65,7 +66,7 @@ baseConfig.devServer = {
     // open: true,
     contentBase: './',
     host: '0.0.0.0',
-    port: '8087',
+    port: '8089',
     stats: {
         children: false
     },

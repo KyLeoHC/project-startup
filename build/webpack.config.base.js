@@ -65,6 +65,18 @@ const config = {
                 ]
             },
             {
+                test: /\.css/,
+                include: /node_modules/,
+                use: [
+                    {
+                        loader: devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader'
+                    }
+                ]
+            },
+            {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             }
