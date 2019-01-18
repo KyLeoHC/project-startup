@@ -9,6 +9,15 @@ const isNumber = value => {
 };
 
 /**
+ * 判断是不是正整数
+ * @param value
+ * @returns {boolean}
+ */
+const isPositiveInteger = value => {
+    return isNumber(value) && /^\d+$/g.test(value);
+};
+
+/**
  * 数值转换器(当给定的值不能转换成数值时，会返回空字符串而不是NaN)
  * @param value
  * @returns {*}
@@ -17,7 +26,7 @@ const parseNumber = (value = '') => {
     if (isNumber(value)) {
         return value;
     }
-    if (typeof value === 'string' && value.length && /^\d+$|^\d+\.\d+$/g.test(value)) {
+    if (typeof value === 'string' && value.length && /^-?\d+$|^-?\d+\.\d+$/g.test(value)) {
         return parseFloat(value);
     } else {
         return '';
@@ -58,6 +67,7 @@ export {
     parseNumber,
     hasOwn,
     isNumber,
+    isPositiveInteger,
     isPlainObject,
     isArray
 };
