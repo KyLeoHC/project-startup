@@ -10,7 +10,7 @@ const deleteFolderRecursive = path => {
     if (fs.existsSync(path)) {
         files = fs.readdirSync(path);
         files.forEach(file => {
-            let curPath = path + "/" + file;
+            let curPath = path + '/' + file;
             if (fs.statSync(curPath).isDirectory()) {
                 deleteFolderRecursive(curPath);
             } else {
