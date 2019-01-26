@@ -1,4 +1,5 @@
 const path = require('path');
+// const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const devMode = process.env.BUILD_ENV === 'development';
@@ -84,6 +85,9 @@ const config = {
     },
     plugins: [
         new VueLoaderPlugin()
+        // new StyleLintPlugin({
+        //     files: ['**/*.{vue,css,sss,less,scss,sass,styl}']
+        // })
     ],
     stats: {
         children: false,

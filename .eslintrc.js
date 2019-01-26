@@ -12,8 +12,8 @@ module.exports = {
     extends: [
         // add more generic rulesets here, such as:
         // 'eslint:recommended',
-        'standard',
-        'plugin:vue/strongly-recommended'
+        'standard', // 这里检查单独JS文件的语法
+        'plugin:vue/strongly-recommended' // eslint-plugin-vue只检查vue组件的template和script部分语法
     ],
     globals: {
         // 'build': true
