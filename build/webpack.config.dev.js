@@ -17,8 +17,6 @@ const config = require('./config');
 //     });
 // }
 
-process.env.NODE_ENV = 'development';
-
 glob.sync('./src/project/*').map(function (src) {
     const name = path.basename(src);
     baseConfig.entry[name] = `./src/project/${name}/index.js`;
@@ -53,12 +51,6 @@ baseConfig.plugins.push(new InlineSourceWebpackPlugin({
 }));
 baseConfig.plugins.push(new webpack.NamedModulesPlugin());
 baseConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
-baseConfig.plugins.push(new webpack.DefinePlugin({
-    'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
-    }
-}));
 
 baseConfig.devServer = {
     hot: true,

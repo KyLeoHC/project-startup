@@ -9,8 +9,8 @@
     };
 </script>
 <style lang="stylus">
-    @import "../../lib/css/flexible.styl"
-    @import "../../lib/css/mobile.styl"
+    @import "~styles/flexible.styl"
+    @import "~styles/mobile.styl"
     #app {
         height 100%
     }

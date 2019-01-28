@@ -15,8 +15,6 @@ const OmitCSSWebpackPlugin = require('./plugins/omit-css-webpack-plugin');
 // 从而引起entry赋值异常的bug
 // const commandOptions = require('./getCommandOptions')();
 
-process.env.NODE_ENV = 'production';
-
 glob.sync('./src/project/*').map(function (src) {
     const name = path.basename(src);
     baseConfig.entry[name] = `./src/project/${name}/index.js`;
@@ -63,12 +61,6 @@ baseConfig.optimization = {
 };
 
 baseConfig.plugins = baseConfig.plugins.concat([
-    new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
-        }
-    }),
     new OptimizeCSSAssetsPlugin({}),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
@@ -98,7 +90,7 @@ Object.keys(baseConfig.entry).forEach(name => {
 baseConfig.plugins.push(new OmitCSSWebpackPlugin());
 baseConfig.plugins.push(new InlineSourceWebpackPlugin({
     compress: true,
-    rootpath: './src'
+    rootpath: './'
 }));
 
 // baseConfig.devtool = 'source-map';

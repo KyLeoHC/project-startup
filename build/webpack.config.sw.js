@@ -8,7 +8,7 @@ const baseConfig = {
         path: path.resolve(__dirname, dir),
         filename: 'sw.js'
     },
-    mode: process.env.BUILD_ENV === 'dev' ? 'development' : 'production'
+    mode: process.env.BUILD_ENV === 'development' ? 'development' : 'production'
 };
 
 module.exports = baseConfig;

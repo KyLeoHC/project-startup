@@ -1,8 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const devMode = process.env.BUILD_ENV === 'development';
+
+process.env.NODE_ENV = devMode ? 'development' : 'production';
 
 const config = {
     entry: {},
@@ -11,13 +14,7 @@ const config = {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': path.resolve(__dirname, '../src'),
-            'src': path.resolve(__dirname, '../src'),
-            'project': path.resolve(__dirname, '../src/project'),
-            'lib': path.resolve(__dirname, '../src/lib'),
-            'utils': path.resolve(__dirname, '../src/utils'),
-            'common': path.resolve(__dirname, '../src/common'),
-            'components': path.resolve(__dirname, '../src/components'),
-            'services': path.resolve(__dirname, '../src/services')
+            'styles': path.resolve(__dirname, '../src/styles')
         }
     },
     resolveLoader: {
@@ -84,7 +81,13 @@ const config = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+                BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
+            }
+        })
         // new StyleLintPlugin({
         //     files: ['**/*.{vue,css,sss,less,scss,sass,styl}']
         // })
