@@ -1,5 +1,5 @@
 module.exports = {
-    cleanFiles: ['./dist.zip', './dist', './dist-tpc', './dist-tpc.zip'],
+    cleanFiles: ['./dist.zip', './dist'],
     cdnPrefix: 'http://10.4.50.122:8089',
     outputDirectory: 'dist',
     publicPathMap: {
