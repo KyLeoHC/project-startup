@@ -54,6 +54,12 @@ baseConfig.devServer = {
         to(context) {
           return context.parsedUrl.pathname.replace(/^\/dev\/([a-zA-Z]+)\/.*$/, `/dev/$1/index.html`);
         }
+      },
+      {
+        from: /^\/dist\/.*$/,
+        to(context) {
+          return context.parsedUrl.pathname.replace(/^\/dist\/([a-zA-Z]+)\/.*$/, `/dist/$1/index.html`);
+        }
       }
     ]
   }

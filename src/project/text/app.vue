@@ -6,9 +6,13 @@
         我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本我是长文本
       </div>
     </div>
+    <div @click="linkToHome">link to home</div>
+    <div @click="linkToIntroduction">link to introduction</div>
   </div>
 </template>
 <script>
+  import router from '@/common/router';
+
   export default {
     name: 'App',
     data() {
@@ -22,7 +26,27 @@
         el.firstElementChild.style.height = `${el.clientHeight}px`;
       });
     },
-    methods: {}
+    methods: {
+      linkToHome() {
+        router.push({
+          project: 'home',
+          path: '/',
+          query: {
+            word: 'hello'
+          }
+        });
+      },
+      linkToIntroduction() {
+        router.push({
+          history: true,
+          project: 'introduction',
+          path: '/detail',
+          query: {
+            word: 'hello'
+          }
+        });
+      }
+    }
   };
 </script>
 <style lang="stylus">

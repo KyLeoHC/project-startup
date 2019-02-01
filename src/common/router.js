@@ -1,28 +1,18 @@
 /*
  * project router
+ * @KyLeo
  */
+import { publicPath } from './env';
+
 const router = {
-  generateUrl: ({ module, name, query = {} }) => {
+  generateUrl: ({ history, project, path, query = {} }) => {
     const queryList = [];
     for (let key in query) {
       queryList.push(`${key}=${encodeURIComponent(query[key])}`);
     }
-    let prefix = '';
-    switch (process.env.NODE_ENV) {
-      case 'production':
-        prefix = '/dist';
-        break;
-      case 'pre-production':
-        prefix = '/dist';
-        break;
-      case 'test':
-        prefix = '/dist';
-        break;
-      case 'development':
-        prefix = '/dev';
-        break;
-    }
-    return `//${location.host}${prefix}/${module}/index.html#/${name || ''}?${queryList.join('&')}`;
+    return history
+      ? `//${location.host}${publicPath}${project}${path}?${queryList.join('&')}`
+      : `//${location.host}${publicPath}${project}/index.html#${path || '/'}?${queryList.join('&')}`;
   },
   push(options) {
     const url = this.generateUrl(options);

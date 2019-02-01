@@ -87,7 +87,8 @@ const baseConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        BUILD_ENV: JSON.stringify(process.env.BUILD_ENV)
+        BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),
+        PUBLIC_PATH: JSON.stringify(config.publicPath)
       }
     })
     // new StyleLintPlugin({
