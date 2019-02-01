@@ -16,7 +16,7 @@ switch (process.env.NODE_ENV) {
     staticPath = '/dist/static';
     pathPrefix = '/dev';
     break;
-  case 'prev':
+  case 'pre-production':
     baseUrl = '//prev.host.com/proxy/';
     swPath = '/dist/';
     staticPath = '/dist/static';

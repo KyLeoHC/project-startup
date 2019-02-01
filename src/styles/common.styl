@@ -1,104 +1,106 @@
 ORANGE_COLOR = #eb5e18
 
 .ellipsis
-    overflow hidden
-    white-space nowrap
-    text-overflow ellipsis
-    -o-text-overflow ellipsis
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+  -o-text-overflow ellipsis
 
 .verticalAlignBefore
-    content " "
-    display inline-block
-    width 0
-    height 100%
-    vertical-align middle
+  content " "
+  display inline-block
+  width 0
+  height 100%
+  vertical-align middle
 
 .scrollY
-    overflow-y auto
-    transform translateZ(0)
-    -webkit-overflow-scrolling touch
-    backface-visibility hidden
-    &::-webkit-scrollbar
-        -webkit-appearance none
-        width 0
-        height 0
-        opacity 0
-    &::-webkit-scrollbar-thumb
-        opacity 0
+  overflow-y auto
+  transform translateZ(0)
+  -webkit-overflow-scrolling touch
+  backface-visibility hidden
 
-.scrollbar::-webkit-scrollbar
+  &::-webkit-scrollbar
+    -webkit-appearance none
     width 0
     height 0
     opacity 0
-    -webkit-appearance none
 
-.scrollbar::-webkit-scrollbar-thumb
+  &::-webkit-scrollbar-thumb
     opacity 0
 
+.scrollbar::-webkit-scrollbar
+  width 0
+  height 0
+  opacity 0
+  -webkit-appearance none
+
+.scrollbar::-webkit-scrollbar-thumb
+  opacity 0
+
 getBorderAllByBG(color = BORDER_COLOR, radius = 8px) {
-    $r = unit(radius/ 2, '')
-    border-radius radius; /*px*/
-    background-image url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 200% 200%' preserveAspectRatio='xMidYMid meet'><rect fill='rgba(0,0,0,0)' width='100%' height='100%' stroke-width='1' stroke='%s' rx='%s' ry='%s'/></svg>", color, $r, $r));
-    background-repeat no-repeat
-    background-position 0 0
-    background-size 100% 100%
+  $r = unit(radius/ 2, '')
+  border-radius radius; /*px*/
+  background-image url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 200% 200%' preserveAspectRatio='xMidYMid meet'><rect fill='rgba(0,0,0,0)' width='100%' height='100%' stroke-width='1' stroke='%s' rx='%s' ry='%s'/></svg>", color, $r, $r));
+  background-repeat no-repeat
+  background-position 0 0
+  background-size 100% 100%
 }
 
 getBorderAll(color = BORDER_COLOR, radius = 8px) {
-    border 1px solid transparent; /*no*/
+  border 1px solid transparent; /*no*/
 
-    &:after {
-        content ""
-        display inline-block
-        position absolute
-        top -50%
-        left -50%
-        width 200%
-        height 200%
-        border 1px solid color; /*no*/
-        border-radius radius; /*no*/
-        transform scale(.5, .5)
-    }
+  &:after {
+    content ""
+    display inline-block
+    position absolute
+    top -50%
+    left -50%
+    width 200%
+    height 200%
+    border 1px solid color; /*no*/
+    border-radius radius; /*no*/
+    transform scale(.5, .5)
+  }
 }
 
 getBorderTopBottom(color = BORDER_COLOR) {
-    border-top: 1px solid transparent; /*no*/
-    border-bottom: 1px solid transparent; /*no*/
-    border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='2px'><rect fill='%s' width='100%' height='50%'/></svg>", color)) 2 2 stretch; /*no*/
+  border-top: 1px solid transparent; /*no*/
+  border-bottom: 1px solid transparent; /*no*/
+  border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='2px'><rect fill='%s' width='100%' height='50%'/></svg>", color)) 2 2 stretch; /*no*/
 }
 
 getBorderLeftRight(color = BORDER_COLOR) {
-    border-left: 1px solid transparent; /*no*/
-    border-right: 1px solid transparent; /*no*/
-    border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='2px'><rect fill='%s' width='50%' height='100%'/></svg>", color)) 2 2 stretch; /*no*/
+  border-left: 1px solid transparent; /*no*/
+  border-right: 1px solid transparent; /*no*/
+  border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='2px'><rect fill='%s' width='50%' height='100%'/></svg>", color)) 2 2 stretch; /*no*/
 }
 
 getBorderTop(color = BORDER_COLOR) {
-    border-bottom 0
-    border-top: 1px solid transparent; /*no*/
-    border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='2px'><rect fill='%s' width='100%' height='50%'/></svg>", color)) 2 2 stretch; /*no*/
+  border-bottom 0
+  border-top: 1px solid transparent; /*no*/
+  border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='2px'><rect fill='%s' width='100%' height='50%'/></svg>", color)) 2 2 stretch; /*no*/
 }
 
 getBorderBottom(color = BORDER_COLOR) {
-    border-top 0
-    border-bottom: 1px solid transparent; /*no*/
-    border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='2px'><rect fill='%s' width='100%' height='50%'/></svg>", color)) 2 2 stretch; /*no*/
+  border-top 0
+  border-bottom: 1px solid transparent; /*no*/
+  border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='2px'><rect fill='%s' width='100%' height='50%'/></svg>", color)) 2 2 stretch; /*no*/
 }
 
 getBorderLeft(color = BORDER_COLOR) {
-    border-right 0
-    border-left: 1px solid transparent; /*no*/
-    border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='2px'><rect fill='%s' width='50%' height='100%'/></svg>", color)) 2 2 stretch; /*no*/
+  border-right 0
+  border-left: 1px solid transparent; /*no*/
+  border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='2px'><rect fill='%s' width='50%' height='100%'/></svg>", color)) 2 2 stretch; /*no*/
 }
 
 getBorderRight(color = BORDER_COLOR) {
-    border-left 0
-    border-right: 1px solid transparent; /*no*/
-    border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='2px'><rect fill='%s' width='50%' height='100%'/></svg>", color)) 2 2 stretch; /*no*/
+  border-left 0
+  border-right: 1px solid transparent; /*no*/
+  border-image: url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='2px'><rect fill='%s' width='50%' height='100%'/></svg>", color)) 2 2 stretch; /*no*/
 }
 
 getBorderBottomRight(color = BORDER_COLOR) {
-    background-image url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 200% 200%' preserveAspectRatio='xMidYMid meet'><line stroke-width='1' stroke='%s' x1='0' y1='100%' x2='100%' y2='100%' /><line stroke-width='1' stroke='%s' x1='100%' y1='0' x2='100%' y2='100%' /></svg>", color, color));
-    background-repeat no-repeat
-    background-size 100% 100%
+  background-image url(s("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 200% 200%' preserveAspectRatio='xMidYMid meet'><line stroke-width='1' stroke='%s' x1='0' y1='100%' x2='100%' y2='100%' /><line stroke-width='1' stroke='%s' x1='100%' y1='0' x2='100%' y2='100%' /></svg>", color, color));
+  background-repeat no-repeat
+  background-size 100% 100%
 }

@@ -1,30 +1,14 @@
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineSourceWebpackPlugin = require('inline-source-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
-const config = require('./config');
-// const commandOptions = require('./getCommandOptions')();
-
-// if (commandOptions.project) {
-//     baseConfig.entry[name] = `./src/project/${commandOptions.project}/index.js`;
-// } else {
-//     glob.sync('./src/project/*').map(function (src) {
-//         const name = path.basename(src);
-//         baseConfig.entry[name] = `./src/project/${name}/index.js`;
-//     });
-// }
-
-glob.sync('./src/project/*').map(function (src) {
-  const name = path.basename(src);
-  baseConfig.entry[name] = `./src/project/${name}/index.js`;
-});
+const config = require('../config');
 
 baseConfig.output = {
   path: path.resolve(__dirname, './'),
-  publicPath: config.publicPathMap[process.env.BUILD_ENV],
+  publicPath: config.publicPath,
   chunkFilename: '[name]/chunk.js',
   filename: '[name]/bundle.js'
 };
@@ -58,7 +42,7 @@ baseConfig.devServer = {
   // open: true,
   contentBase: './',
   host: '0.0.0.0',
-  port: '8089',
+  port: config.port,
   stats: {
     children: false
   },

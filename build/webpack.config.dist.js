@@ -1,7 +1,6 @@
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
-const config = require('./config');
+const config = require('../config');
 const swConfig = require('./webpack.config.sw');
 const baseConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -15,14 +14,9 @@ const OmitCSSWebpackPlugin = require('./plugins/omit-css-webpack-plugin');
 // 从而引起entry赋值异常的bug
 // const commandOptions = require('./getCommandOptions')();
 
-glob.sync('./src/project/*').map(function (src) {
-  const name = path.basename(src);
-  baseConfig.entry[name] = `./src/project/${name}/index.js`;
-});
-
 baseConfig.output = {
   path: path.resolve(__dirname, '../' + config.outputDirectory),
-  publicPath: config.publicPathMap[process.env.BUILD_ENV],
+  publicPath: config.publicPath,
   filename: '[name]/bundle.[contenthash].js',
   chunkFilename: '[name]/chunk.[contenthash].js'
 };
@@ -90,7 +84,7 @@ Object.keys(baseConfig.entry).forEach(name => {
 baseConfig.plugins.push(new OmitCSSWebpackPlugin());
 baseConfig.plugins.push(new InlineSourceWebpackPlugin({
   compress: true,
-  rootpath: './'
+  rootpath: './src'
 }));
 
 // baseConfig.devtool = 'source-map';

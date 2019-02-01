@@ -1,5 +1,5 @@
 /*
-  project router
+ * project router
  */
 const router = {
   generateUrl: ({ module, name, query = {} }) => {
@@ -12,13 +12,13 @@ const router = {
       case 'production':
         prefix = '/dist';
         break;
-      case 'prev':
+      case 'pre-production':
         prefix = '/dist';
         break;
       case 'test':
         prefix = '/dist';
         break;
-      case 'dev':
+      case 'development':
         prefix = '/dev';
         break;
     }

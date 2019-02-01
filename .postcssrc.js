@@ -1,5 +1,5 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
-const config = require('./build/config');
+const config = require('./config');
 
 module.exports = {
   plugins: [

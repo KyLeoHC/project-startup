@@ -3,7 +3,7 @@
  * by KyLeo 2017.09.13
  */
 const fs = require('fs');
-const config = require('./config');
+const config = require('../config');
 
 const deleteFolderRecursive = path => {
   let files = [];

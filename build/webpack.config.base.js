@@ -1,5 +1,7 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
+const config = require('../config');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -7,7 +9,7 @@ const devMode = process.env.BUILD_ENV === 'development';
 
 process.env.NODE_ENV = devMode ? 'development' : 'production';
 
-const config = {
+const baseConfig = {
   entry: {},
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -100,4 +102,13 @@ const config = {
   }
 };
 
-module.exports = config;
+const entryList = config.entryList && config.entryList.length
+  ? config.entryList
+  : glob.sync('./src/project/*');
+
+entryList.map(function (src) {
+  const name = path.basename(src);
+  baseConfig.entry[name] = `./src/project/${name}/index.js`;
+});
+
+module.exports = baseConfig;

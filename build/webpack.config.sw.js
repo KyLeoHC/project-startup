@@ -1,5 +1,5 @@
 const path = require('path');
-const config = require('./config');
+const config = require('../config');
 
 const dir = process.env.BUILD_ENV === 'dev' ? './' : ('../' + config.outputDirectory);
 const baseConfig = {
