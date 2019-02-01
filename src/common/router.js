@@ -1,6 +1,6 @@
 /*
  * project router
- * @KyLeo
+ * @author KyLeo
  */
 import { publicPath } from './env';
 
