@@ -3,7 +3,7 @@
  * 这里的所有校验函数都是业务相关的
  */
 import {
-    isPositiveInteger
+  isPositiveInteger
 } from './validator';
 
 /**
@@ -12,9 +12,9 @@ import {
  * @returns {boolean}
  */
 const isPhoneNumber = value => {
-    return isPositiveInteger(value) && (value + '').length === 11;
+  return isPositiveInteger(value) && (value + '').length === 11;
 };
 
 export {
-    isPhoneNumber
+  isPhoneNumber
 };

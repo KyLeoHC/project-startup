@@ -4,8 +4,8 @@
  * @returns {boolean}
  */
 const isNumber = value => {
-    const numberValue = parseFloat(value);
-    return numberValue === value;
+  const numberValue = parseFloat(value);
+  return numberValue === value;
 };
 
 /**
@@ -14,7 +14,7 @@ const isNumber = value => {
  * @returns {boolean}
  */
 const isPositiveInteger = value => {
-    return isNumber(value) && /^\d+$/g.test(value);
+  return isNumber(value) && /^\d+$/g.test(value);
 };
 
 /**
@@ -23,14 +23,14 @@ const isPositiveInteger = value => {
  * @returns {*}
  */
 const parseNumber = (value = '') => {
-    if (isNumber(value)) {
-        return value;
-    }
-    if (typeof value === 'string' && value.length && /^-?\d+$|^-?\d+\.\d+$/g.test(value)) {
-        return parseFloat(value);
-    } else {
-        return '';
-    }
+  if (isNumber(value)) {
+    return value;
+  }
+  if (typeof value === 'string' && value.length && /^-?\d+$|^-?\d+\.\d+$/g.test(value)) {
+    return parseFloat(value);
+  } else {
+    return '';
+  }
 };
 
 const _toString = Object.prototype.toString;
@@ -41,7 +41,7 @@ const _toString = Object.prototype.toString;
  * @returns {boolean}
  */
 const isPlainObject = value => {
-    return _toString.call(value) === '[object Object]';
+  return _toString.call(value) === '[object Object]';
 };
 
 /**
@@ -50,7 +50,7 @@ const isPlainObject = value => {
  * @returns {boolean}
  */
 const isArray = value => {
-    return _toString.call(value) === '[object Array]';
+  return _toString.call(value) === '[object Array]';
 };
 
 /**
@@ -60,14 +60,14 @@ const isArray = value => {
  * @returns {boolean}
  */
 const hasOwn = (obj, key) => {
-    return Object.prototype.hasOwnProperty.call(obj, key);
+  return Object.prototype.hasOwnProperty.call(obj, key);
 };
 
 export {
-    parseNumber,
-    hasOwn,
-    isNumber,
-    isPositiveInteger,
-    isPlainObject,
-    isArray
+  parseNumber,
+  hasOwn,
+  isNumber,
+  isPositiveInteger,
+  isPlainObject,
+  isArray
 };

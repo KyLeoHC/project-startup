@@ -1,4 +1,4 @@
-import {isNumber} from './validator';
+import { isNumber } from './validator';
 
 const oneSecond = 1000;
 const oneMinute = 60 * oneSecond;
@@ -12,13 +12,13 @@ const oneDay = 24 * oneHour;
  * @returns {{hour: number, day: number, minute: number, second: number}}
  */
 const calcTime = (startTime = new Date().getTime(), endTime = new Date().getTime()) => {
-    const differ = endTime - startTime;
-    return {
-        day: Math.floor(differ / oneDay),
-        hour: Math.floor(differ / oneHour % 24),
-        minute: Math.floor(differ / oneMinute % 60),
-        second: Math.floor(differ / oneSecond % 60)
-    };
+  const differ = endTime - startTime;
+  return {
+    day: Math.floor(differ / oneDay),
+    hour: Math.floor(differ / oneHour % 24),
+    minute: Math.floor(differ / oneMinute % 60),
+    second: Math.floor(differ / oneSecond % 60)
+  };
 };
 
 /**
@@ -29,28 +29,28 @@ const calcTime = (startTime = new Date().getTime(), endTime = new Date().getTime
  * @returns {{start(*)}}
  */
 const countDown = (startDate = new Date().getTime(), endDate = new Date().getTime(), interval = 1000) => {
-    let intervalId;
-    return {
-        start(cb) {
-            let startTime = isNumber(startDate) ? startDate : new Date(startDate).getTime();
-            let endTime = isNumber(endDate) ? endDate : new Date(endDate).getTime();
-            if (startTime <= endTime) {
-                intervalId = setInterval(() => {
-                    startTime += interval;
-                    if (startTime > endTime) {
-                        clearInterval(intervalId);
-                    } else {
-                        cb(calcTime(startTime, endTime));
-                    }
-                }, interval);
-            } else {
-                cb(calcTime());
-            }
-        }
-    };
+  let intervalId;
+  return {
+    start(cb) {
+      let startTime = isNumber(startDate) ? startDate : new Date(startDate).getTime();
+      let endTime = isNumber(endDate) ? endDate : new Date(endDate).getTime();
+      if (startTime <= endTime) {
+        intervalId = setInterval(() => {
+          startTime += interval;
+          if (startTime > endTime) {
+            clearInterval(intervalId);
+          } else {
+            cb(calcTime(startTime, endTime));
+          }
+        }, interval);
+      } else {
+        cb(calcTime());
+      }
+    }
+  };
 };
 
 export {
-    calcTime,
-    countDown
+  calcTime,
+  countDown
 };

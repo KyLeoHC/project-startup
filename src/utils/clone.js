@@ -1,7 +1,7 @@
 import {
-    isArray,
-    isPlainObject,
-    hasOwn
+  isArray,
+  isPlainObject,
+  hasOwn
 } from './validator';
 
 let uniqueList = [];
@@ -12,7 +12,7 @@ let uniqueList = [];
  * @returns {boolean}
  */
 const isUnique = target => {
-    return !uniqueList.filter(item => item === target)[0];
+  return !uniqueList.filter(item => item === target)[0];
 };
 
 /**
@@ -21,9 +21,9 @@ const isUnique = target => {
  * @returns {any}
  */
 const cloneObj = data => {
-    if (isPlainObject(data) || isArray(data)) {
-        return JSON.parse(JSON.stringify(data));
-    }
+  if (isPlainObject(data) || isArray(data)) {
+    return JSON.parse(JSON.stringify(data));
+  }
 };
 
 /**
@@ -31,56 +31,56 @@ const cloneObj = data => {
  * @param data
  */
 const cloneObjLoop = (data) => {
-    if (!isPlainObject(data) && !isArray(data)) return;
-    uniqueList = [];
-    const copy = {};
-    const list = [{
-        parent: copy,
-        key: undefined,
-        copy: undefined, // 新副本数据
-        data // 待拷贝的原数据
-    }];
+  if (!isPlainObject(data) && !isArray(data)) return;
+  uniqueList = [];
+  const copy = {};
+  const list = [{
+    parent: copy,
+    key: undefined,
+    copy: undefined, // 新副本数据
+    data // 待拷贝的原数据
+  }];
 
-    do {
-        // 深度优先遍历
-        const item = list.pop();
-        if (item.key !== undefined && item.copy !== undefined) {
-            if (isUnique(item.data)) {
-                // 赋值
-                item.parent[item.key] = item.copy;
-                // 修改父节点指向
-                item.parent = item.copy;
-                // 保存唯一的引用，用作后续检查唯一性
-                uniqueList.push(item.data);
-            } else {
-                item.parent[item.key] = item.data;
-                continue;
-            }
+  do {
+    // 深度优先遍历
+    const item = list.pop();
+    if (item.key !== undefined && item.copy !== undefined) {
+      if (isUnique(item.data)) {
+        // 赋值
+        item.parent[item.key] = item.copy;
+        // 修改父节点指向
+        item.parent = item.copy;
+        // 保存唯一的引用，用作后续检查唯一性
+        uniqueList.push(item.data);
+      } else {
+        item.parent[item.key] = item.data;
+        continue;
+      }
+    }
+    for (let key in item.data) {
+      if (hasOwn(item.data, key)) {
+        const value = item.data[key];
+        if (isPlainObject(value)) {
+          list.push({
+            key,
+            parent: item.parent,
+            copy: {},
+            data: value
+          });
+        } else if (isArray(value)) {
+          list.push({
+            key,
+            parent: item.parent,
+            copy: [],
+            data: value
+          });
+        } else {
+          item.parent[key] = value;
         }
-        for (let key in item.data) {
-            if (hasOwn(item.data, key)) {
-                const value = item.data[key];
-                if (isPlainObject(value)) {
-                    list.push({
-                        key,
-                        parent: item.parent,
-                        copy: {},
-                        data: value
-                    });
-                } else if (isArray(value)) {
-                    list.push({
-                        key,
-                        parent: item.parent,
-                        copy: [],
-                        data: value
-                    });
-                } else {
-                    item.parent[key] = value;
-                }
-            }
-        }
-    } while (list.length);
-    return copy;
+      }
+    }
+  } while (list.length);
+  return copy;
 };
 
 /**
@@ -90,35 +90,35 @@ const cloneObjLoop = (data) => {
  * @returns {*}
  */
 const cloneObjRecursion = (data, copy) => {
-    if (!isPlainObject(data) && !isArray(data)) return;
-    if (!copy) {
-        uniqueList = [];
-        if (isPlainObject(data)) {
-            copy = {};
-        } else if (isArray(data)) {
-            copy = [];
-        }
+  if (!isPlainObject(data) && !isArray(data)) return;
+  if (!copy) {
+    uniqueList = [];
+    if (isPlainObject(data)) {
+      copy = {};
+    } else if (isArray(data)) {
+      copy = [];
     }
-    Object.keys(data).forEach(key => {
-        const value = data[key];
-        if (!isUnique(value)) {
-            copy[key] = value;
-            return;
-        }
-        uniqueList.push(value);
-        if (isPlainObject(value)) {
-            copy[key] = cloneObjRecursion(value, {});
-        } else if (isArray(value)) {
-            copy[key] = cloneObjRecursion(value, []);
-        } else {
-            copy[key] = value;
-        }
-    });
-    return copy;
+  }
+  Object.keys(data).forEach(key => {
+    const value = data[key];
+    if (!isUnique(value)) {
+      copy[key] = value;
+      return;
+    }
+    uniqueList.push(value);
+    if (isPlainObject(value)) {
+      copy[key] = cloneObjRecursion(value, {});
+    } else if (isArray(value)) {
+      copy[key] = cloneObjRecursion(value, []);
+    } else {
+      copy[key] = value;
+    }
+  });
+  return copy;
 };
 
 export {
-    cloneObj,
-    cloneObjLoop,
-    cloneObjRecursion
+  cloneObj,
+  cloneObjLoop,
+  cloneObjRecursion
 };

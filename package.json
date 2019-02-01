@@ -10,10 +10,8 @@
     "build:test": "npm run clean && cross-env BUILD_ENV=test webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
     "build:prev": "npm run clean && cross-env BUILD_ENV=prev webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
     "build:prod": "npm run clean && cross-env BUILD_ENV=production webpack --display-optimization-bailout --config ./build/webpack.config.dist.js",
-    "build:tpc:dev": "npm run clean && cross-env BUILD_ENV=development webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js",
-    "build:tpc:test": "npm run clean && cross-env BUILD_ENV=test webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js",
-    "build:tpc:prev": "npm run clean && cross-env BUILD_ENV=prev webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js",
-    "build:tpc:prod": "npm run clean && cross-env BUILD_ENV=production webpack --display-optimization-bailout --config ./build/webpack.config.tpc.js"
+    "lint": "eslint --ext .js,.vue src build",
+    "lint:fix": "eslint --fix --ext .js,.vue src build"
   },
   "repository": {
     "type": "git",

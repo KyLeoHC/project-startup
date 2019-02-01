@@ -1,17 +1,17 @@
 let passiveSupported = false;
 
 try {
-    let options = {
-        get passive() {
-            // This function will be called when the browser
-            // attempts to access the passive property.
-            passiveSupported = true;
-        }
-    };
-    window.addEventListener('test', options, options);
-    window.removeEventListener('test', options, options);
+  let options = {
+    get passive() {
+      // This function will be called when the browser
+      // attempts to access the passive property.
+      passiveSupported = true;
+    }
+  };
+  window.addEventListener('test', options, options);
+  window.removeEventListener('test', options, options);
 } catch (err) {
-    passiveSupported = false;
+  passiveSupported = false;
 }
 
 /**
@@ -20,13 +20,13 @@ try {
  * @private
  */
 const _processor = function (event) {
-    const namespaceObj = event.currentTarget.__event[event.type];
-    Object.keys(namespaceObj)
-        .forEach(key => {
-            namespaceObj[key].forEach(handler => {
-                handler(event);
-            });
-        });
+  const namespaceObj = event.currentTarget.__event[event.type];
+  Object.keys(namespaceObj)
+    .forEach(key => {
+      namespaceObj[key].forEach(handler => {
+        handler(event);
+      });
+    });
 };
 
 /**
@@ -37,15 +37,15 @@ const _processor = function (event) {
  * @param handler
  */
 const on = (el, event, handler) => {
-    if (!el || !event || !handler) return;
-    const [name, namespace = 'default'] = event.split('.');
-    if (!el.__event) {
-        el.__event = {};
-        el.addEventListener(name, _processor, passiveSupported ? {passive: true} : false);
-    }
-    el.__event[name] = el.__event[name] || {};
-    el.__event[name][namespace] = el.__event[name][namespace] || [];
-    el.__event[name][namespace].push(handler);
+  if (!el || !event || !handler) return;
+  const [name, namespace = 'default'] = event.split('.');
+  if (!el.__event) {
+    el.__event = {};
+    el.addEventListener(name, _processor, passiveSupported ? { passive: true } : false);
+  }
+  el.__event[name] = el.__event[name] || {};
+  el.__event[name][namespace] = el.__event[name][namespace] || [];
+  el.__event[name][namespace].push(handler);
 };
 
 /**
@@ -54,14 +54,14 @@ const on = (el, event, handler) => {
  * @param event 比如'click.show'的形式
  */
 const off = (el, event) => {
-    if (!el || !event) return;
-    const [name, namespace = 'default'] = event.split('.');
-    const namespaceObj = el.__event[name];
-    namespaceObj && delete namespaceObj[namespace];
-    if (!Object.keys(namespaceObj).length) {
-        delete el.__event[name];
-        el.removeEventListener(name, _processor, passiveSupported ? {passive: true} : false);
-    }
+  if (!el || !event) return;
+  const [name, namespace = 'default'] = event.split('.');
+  const namespaceObj = el.__event[name];
+  namespaceObj && delete namespaceObj[namespace];
+  if (!Object.keys(namespaceObj).length) {
+    delete el.__event[name];
+    el.removeEventListener(name, _processor, passiveSupported ? { passive: true } : false);
+  }
 };
 
 /**
@@ -71,11 +71,11 @@ const off = (el, event) => {
  * @param handler
  */
 const once = (el, event, handler) => {
-    const listener = function () {
-        handler && handler.apply(this, arguments);
-        off(el, event);
-    };
-    on(el, event, listener);
+  const listener = function () {
+    handler && handler.apply(this, arguments);
+    off(el, event);
+  };
+  on(el, event, listener);
 };
 
 /**
@@ -84,26 +84,26 @@ const once = (el, event, handler) => {
  * @returns {number}
  */
 const computeOffset = el => {
-    let offsetTop = 0;
-    let offsetLeft = 0;
-    let parentEl = el.offsetParent;
-    while (parentEl) {
-        offsetTop += parentEl.offsetTop;
-        offsetLeft += parentEl.offsetLeft;
-        parentEl = parentEl.offsetParent;
-    }
-    offsetTop += el.offsetTop;
-    offsetLeft += el.offsetLeft;
-    return {
-        offsetTop,
-        offsetLeft
-    };
+  let offsetTop = 0;
+  let offsetLeft = 0;
+  let parentEl = el.offsetParent;
+  while (parentEl) {
+    offsetTop += parentEl.offsetTop;
+    offsetLeft += parentEl.offsetLeft;
+    parentEl = parentEl.offsetParent;
+  }
+  offsetTop += el.offsetTop;
+  offsetLeft += el.offsetLeft;
+  return {
+    offsetTop,
+    offsetLeft
+  };
 };
 
 export {
-    on,
-    off,
-    once,
-    passiveSupported,
-    computeOffset
+  on,
+  off,
+  once,
+  passiveSupported,
+  computeOffset
 };

@@ -1,6 +1,6 @@
 import {
-    def,
-    logger
+  def,
+  logger
 } from './utils/index';
 import queue from './queue';
 

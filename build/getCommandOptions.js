@@ -5,25 +5,25 @@ const program = require('commander');
 let commandOptions = null;
 
 function getCommandOptions() {
-    if (!commandOptions) {
-        let argv;
-        try {
-            // get parameter from npm command
-            argv = JSON.parse(process.env.npm_config_argv).original;
-        } catch (ex) {
-            argv = process.argv;
-        }
-        program
-            .version('0.0.1')
-            .option('-p, --project <name>', 'compile project')
-            .option('-c, --component <name>', 'compile tpc')
-            .parse(argv);
-        commandOptions = {
-            project: program.project,
-            component: program.component
-        };
+  if (!commandOptions) {
+    let argv;
+    try {
+      // get parameter from npm command
+      argv = JSON.parse(process.env.npm_config_argv).original;
+    } catch (ex) {
+      argv = process.argv;
     }
-    return commandOptions;
+    program
+      .version('0.0.1')
+      .option('-p, --project <name>', 'compile project')
+      .option('-c, --component <name>', 'compile tpc')
+      .parse(argv);
+    commandOptions = {
+      project: program.project,
+      component: program.component
+    };
+  }
+  return commandOptions;
 }
 
 module.exports = getCommandOptions;
